@@ -46,5 +46,4 @@ public class ServletSaludo extends HttpServlet {
 		doGet(request, response);
 	}
 
-	
 }
