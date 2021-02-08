@@ -18,11 +18,12 @@
 <body>
 	<!-- Contenido -->
 	<div class="container" id="contenedor-principal">
-		<h2>Vista-Carrito</h2>
+		<h2>Vista-Productos</h2>
 		<ul>
-			<c:forEach var="par" items="${paresCarrito}">
+			<c:forEach var="prod" items="${productos}">
 				<tr>
-					<li>${par.key}- ${par.value} </li>
+					<li>${prod.nombre}, precio: ${prod.precio}</li>
+					<img src="<c:out value="${prod.imagen}"/>"/>
 				</tr>
 			</c:forEach>
 		</ul>
