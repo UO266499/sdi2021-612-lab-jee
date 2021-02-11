@@ -1,21 +1,25 @@
 package com.uniovi.entities;
 
+import javax.persistence.*;
+
+@Entity
 public class Mark {
-	
+	@Id
+	@GeneratedValue
 	private Long id;
 	private String description;
 	private Double score;
-	
+
 	public Mark(Long id, String description, Double score) {
 		super();
 		this.id = id;
 		this.description = description;
 		this.score = score;
 	}
-	
+
 	public Mark(){
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Mark [id=" + id + ", description=" + description + ", score=" + score + "]";
