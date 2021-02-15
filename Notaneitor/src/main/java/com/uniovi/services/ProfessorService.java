@@ -3,40 +3,34 @@ package com.uniovi.services;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.uniovi.entities.Professor;
+import com.uniovi.repositories.ProfessorRepository;
 
+@Service
 public class ProfessorService {
 
-	private List<Professor> professorList = new ArrayList<Professor>();
-	
-	@PostConstruct
-	public void init() {
-		professorList.add(new Professor("1234567A", "Edward", "Rolando Nuñez", "SDI"));
-		professorList.add(new Professor("2345678B", "Jose Emilio", "Labra Gayo", "ASR"));
-		professorList.add(new Professor("1231445C", "Luciano", "Sanchez Ramos", "ASR"));
-	}
+	@Autowired
+	private ProfessorRepository  profRep;
 	
 	public List<Professor> getProfessors(){
-		return professorList;
+		List<Professor> professors = new ArrayList<Professor>();
+		profRep.findAll().forEach(professors::add);
+		return professors;
 	}
 	
 	public Professor getProfessor(String dni){
-		return professorList.stream()
-				.filter(prof -> prof.getDni().equals(dni)).findFirst().get();
+		return profRep.findById(dni).get();
 	}
 	
 	public void addProfessor(Professor prof){
-		 if(prof.getDni() == null) {
-		 prof.setDni(professorList.get(professorList.size() - 1).getDni() + 1);
-		 }
-
-		 professorList.add(prof);
+		profRep.save(prof);
 	}
 	
 	public void deleteProfessor(String dni){
-		professorList.removeIf(prof -> prof.getDni().equals(dni));
+		profRep.deleteById(dni);
 	}
 	
 }
