@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.uniovi.entities.Mark;
 import com.uniovi.entities.User;
 import com.uniovi.services.SecurityService;
 import com.uniovi.services.UsersService;
@@ -36,21 +37,25 @@ public class UsersController {
 		model.addAttribute("usersList", usersService.getUsers());
 		return "user/add";
 	}
+	
 	@RequestMapping(value="/user/add", method=RequestMethod.POST )
 	public String setUser(@ModelAttribute User user){
 		usersService.addUser(user);
 		return "redirect:/user/list";
 	}
+	
 	@RequestMapping("/user/details/{id}" )
 	public String getDetail(Model model, @PathVariable Long id){
-		model.addAttribute("user", usersService.getUser(id));
+		model.addAttribute("usersList", usersService.getUser(id));
 		return "user/details";
 	}
+	
 	@RequestMapping("/user/delete/{id}" )
 	public String delete(@PathVariable Long id){
 		usersService.deleteUser(id);
 		return "redirect:/user/list";
 	}
+
 	@RequestMapping(value="/user/edit/{id}")
 	public String getEdit(Model model, @PathVariable Long id){
 		User user = usersService.getUser(id);
@@ -58,9 +63,13 @@ public class UsersController {
 		return "user/edit";
 	}
 	@RequestMapping(value="/user/edit/{id}", method=RequestMethod.POST)
-	public String setEdit(Model model, @PathVariable Long id, @ModelAttribute User user){
-		user.setId(id);
-		usersService.addUser(user);
+	public String setEdit(Model model,@PathVariable Long id,@ModelAttribute User user){
+		User original = usersService.getUser(id);
+	
+		original.setName(user.getName());
+		original.setLastName(user.getLastName());
+		original.setDni(user.getDni());
+		usersService.addUser(original);
 		return "redirect:/user/details/"+id;
 	}
 
@@ -92,5 +101,7 @@ public class UsersController {
 		model.addAttribute("markList", activeUser.getMarks());
 		return "home";
 	}
+	
+	
 
 }
