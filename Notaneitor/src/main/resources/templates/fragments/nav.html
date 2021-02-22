@@ -11,26 +11,24 @@
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
-				<li><a href="/">Home</a></li>
-				<li id="marks-menu" class="dropdown">
-					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-						Gestión de notas <span class="caret"></span>
-					</a>
+				<li><a href="/" th:text="#{index.home}" >Home</a></li>
+				<li id="marks-menu" class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#" th:text="#{index.marks}"> Gestión de notas <span
+						class="caret"></span>
+				</a>
 					<ul class="dropdown-menu">
-						<li><a href="/mark/add">Agregar Nota</a></li>
-						<li><a href="/mark/list">Ver Notas</a></li>
-					</ul>
-				</li>
-				<li id="users-menu" class="dropdown">
-					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-						Gestión de Usuarios <span class="caret"></span>
-					</a>
+						<li><a href="/mark/add" th:text="#{index.addMark}">Agregar Nota</a></li>
+						<li><a href="/mark/list" th:text="#{index.seeMarks}">Ver Notas</a></li>
+					</ul></li>
+				<li id="users-menu" class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#" th:text="#{index.users}"> Gestión de Usuarios <span
+						class="caret"></span>
+				</a>
 					<ul class="dropdown-menu">
-						<li><a href="/user/add">Agregar Usuario</a></li>
-						<li><a href="/user/list">Ver Usuarios</a></li>
-					</ul>
-				</li>
-				
+						<li><a href="/user/add" th:text="#{index.addUser}">Agregar Usuario</a></li>
+						<li><a href="/user/list" th:text="#{index.seeUsers}">Ver Usuarios</a></li>
+					</ul></li>
+
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown"><a id="btnLanguage" href="
@@ -50,7 +48,14 @@
 								style="border: 0; float: left; margin-right: 15px" /> <span
 								th:text="#{language.es}">Español</span>
 						</a></li>
-					</ul></li>
+
+						<li><a id="btnPortuguese" value="PT"> <img
+								th:src="@{/img/if_portugal_flag.png}"
+								style="border: 0; float: left; margin-right: 15px; max-width: 16px" />
+								<span th:text="#{language.pt}">Portugues</span>
+						</a></li>
+					</ul>
+				</li>
 
 				<li><a href="/signup" th:text="#{signup.message}"> <span
 						class="glyphicon glyphicon-user"></span> Registrate
