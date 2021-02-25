@@ -1,9 +1,17 @@
 package com.uniovi.controllers;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.uniovi.entities.Mark;
 import com.uniovi.services.MarksService;
@@ -11,6 +19,10 @@ import com.uniovi.services.UsersService;
 
 @Controller
 public class MarksControllers {
+
+	 @Autowired
+	private HttpSession httpSession;
+
 	
 	@Autowired //Inyectar el servicio
 	private MarksService marksService;

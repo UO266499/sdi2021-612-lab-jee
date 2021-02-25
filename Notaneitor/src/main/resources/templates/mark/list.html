@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head th:replace="fragments/head"/>
+<head th:replace="fragments/head" />
 <body>
-
-<head th:replace="fragments/nav"/>
+<head th:replace="fragments/nav" />
 
 
 <div class="container">
 	<h2 th:text="#{mark.marks}">Notas</h2>
-	<p th:text="#{mark.marksInSystem}">Las notas que actualmente figuran en el sistema son las
-		siguientes:</p>
-	<button type="button" id="updateButton" class="btn btn-default" th:text="#{mark.refresh}">Actualizar</button>
+	<p th:text="#{mark.marksInSystem}">Las notas que actualmente
+		figuran en el sistema son las siguientes:</p>
+	<button type="button" id="updateButton" class="btn btn-default"
+		th:text="#{mark.refresh}">Actualizar</button>
 	<script>
 		$("#updateButton").click(function() {
 			$("#tableMarks").load('/mark/list/update');
@@ -35,9 +35,12 @@
 					<td th:text="${mark.id}">1</td>
 					<td th:text="${mark.description}">Ejercicio 1</td>
 					<td th:text="${mark.score}">10</td>
-					<td><a th:href="${'/mark/details/' + mark.id}" th:text="#{home.details}">detalles</a></td>
-					<td><a th:href="${'/mark/edit/' + mark.id}" th:text="#{home.modify}">modificar</a></td>
-					<td><a th:href="${'/mark/delete/' + mark.id}" th:text="#{home.delete}">eliminar</a></td>
+					<td><a th:href="${'/mark/details/' + mark.id}"
+						th:text="#{home.details}">detalles</a></td>
+					<td><a th:href="${'/mark/edit/' + mark.id}"
+						th:text="#{home.modify}">modificar</a></td>
+					<td><a th:href="${'/mark/delete/' + mark.id}"
+						th:text="#{home.delete}">eliminar</a></td>
 				</tr>
 			</tbody>
 		</table>
@@ -45,6 +48,6 @@
 </div>
 
 
-<head th:replace="fragments/footer"/>
+<head th:replace="fragments/footer" />
 </body>
 </html>
