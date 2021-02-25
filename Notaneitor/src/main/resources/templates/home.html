@@ -6,9 +6,10 @@
 	<div class="container" style="text-align: center">
 		<h2 th:text="#{welcome.message}"></h2>
 		<h3 th:text="#{home.private}">Esta es una zona privada la web</h3>
-		<p th:text="#{home.identifiedAs}">
-			Usuario Autenticado como : <b th:inline="text">
-				[[${#httpServletRequest.remoteUser}]] </b>
+		<p>
+			Usuario Autenticado como : <span
+				sec:authentication="principal.username" th:inline="text">
+				[[${#httpServletRequest.remoteUser}]] </span>
 		</p>
 	</div>
 	<p th:text="#{home.marksOfUser}">Notas del usuario</p>
@@ -29,9 +30,12 @@
 					<td th:text="${mark.id}">1</td>
 					<td th:text="${mark.description}">Ejercicio 1</td>
 					<td th:text="${mark.score}">10</td>
-					<td><a th:href="${'/mark/details/' + mark.id}" th:text="#{home.details}">detalles</a></td>
-					<td><a th:href="${'/mark/edit/' + mark.id}" th:text="#{home.modify}" >modificar</a></td>
-					<td><a th:href="${'/mark/delete/' + mark.id}" th:text="#{home.delete}">eliminar</a></td>
+					<td><a th:href="${'/mark/details/' + mark.id}"
+						th:text="#{home.details}">detalles</a></td>
+					<td><a th:href="${'/mark/edit/' + mark.id}"
+						th:text="#{home.modify}">modificar</a></td>
+					<td><a th:href="${'/mark/delete/' + mark.id}"
+						th:text="#{home.delete}">eliminar</a></td>
 				</tr>
 			</tbody>
 		</table>
