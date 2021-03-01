@@ -44,10 +44,11 @@ public class UsersController {
 		Page<User> users = new PageImpl<User>(new LinkedList<User>());
 		if (searchText != null && !searchText.isEmpty()) {
 			users = usersService.searchUserByNameOrLastName(pageable, searchText);
-			model.addAttribute("usersList", users);
 		}else {
-			model.addAttribute("usersList", usersService.getUsers());
+			users = usersService.getUsers(pageable);
 		}
+		model.addAttribute("usersList", users);
+		model.addAttribute("page", users);
 		
 		return "user/list";
 	}
