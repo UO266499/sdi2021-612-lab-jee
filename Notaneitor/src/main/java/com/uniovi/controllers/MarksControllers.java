@@ -37,14 +37,13 @@ public class MarksControllers {
 
 	
 	@RequestMapping("/mark/list")
-	public String getList(Model model,Pageable pageable, Principal principal, @RequestParam(value = "", required = false) String searchtext){
+	public String getList(Model model,Pageable pageable, Principal principal, @RequestParam(value = "", required = false) String searchText){
 		String dni = principal.getName(); // DNI es el name de la autenticación
 		User user = usersService.getUserByDni(dni);
 		Page<Mark> marks = new PageImpl<Mark>(new LinkedList<Mark>());
-		if (searchtext != null && !searchtext.isEmpty()) {
-			marks = marksService.searchMarksByDescriptionAndNameForUser(pageable,searchtext, user);
+		if (searchText != null && !searchText.isEmpty()) {
+			marks = marksService.searchMarksByDescriptionAndNameForUser(pageable,searchText, user);
 		}else {
-
 			marks = marksService.getMarksForUser(pageable, user);
 		}
 		model.addAttribute("markList", marks.getContent());
