@@ -28,6 +28,31 @@ public class PO_PrivateView extends PO_NavView{
 		driver.findElement(boton).click();
 	}
 	
+	static public void fillFormAddProfessor(WebDriver driver, String namep,String lastNamep, String fieldp,
+			String dnip)
+	{
+		//Esperamos 5 segundo a que carge el DOM porque en algunos equipos falla
+		SeleniumUtils.esperarSegundos(driver, 5);
+		//Seleccionamos el alumnos userOrder
+		WebElement dni = driver.findElement(By.name("dni"));
+		dni.clear();
+		dni.sendKeys(dnip);
+		//Rellenemos el campo de descripción
+		WebElement name = driver.findElement(By.name("name"));
+		name.clear();
+		name.sendKeys(namep);
+		WebElement lastname = driver.findElement(By.name("apellidos"));
+		lastname.clear();
+		lastname.sendKeys(lastNamep);
+		WebElement categoria = driver.findElement(By.name("field"));
+		categoria.clear();
+		categoria.sendKeys(fieldp);
+		
+		By boton = By.className("btn");
+		driver.findElement(boton).click();
+	}
+	
+	
 	static public void defaultLogin(WebDriver driver,String user, String password,
 			String expectedTextField)
 	{
